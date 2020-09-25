@@ -1,0 +1,127 @@
+@font-face {
+  font-family: "header";
+  src: url(/fonts/belligerent.ttf);
+}
+@font-face {
+  font-family: "main";
+  src: url(/fonts/Calculative.ttf);
+}
+/* color */
+/* font-size */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+header {
+  background-color: #f3e9f1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 7rem;
+  font-family: "header";
+}
+header .logo {
+  display: flex;
+  text-decoration: none;
+  color: black;
+  height: 100%;
+  flex-grow: 1;
+}
+header .logo h1 {
+  font-size: 3rem;
+}
+header a {
+  display: flex;
+  margin-right: 0.5rem;
+}
+header a i {
+  margin: 0.5rem;
+  background: linear-gradient(to right, #e78b06, #935df4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+header a h1 {
+  margin-right: 1.5rem;
+  font-size: 1.5rem;
+}
+header a:nth-of-type(2) {
+  width: 6rem;
+  text-decoration: none;
+  color: black;
+}
+header a:nth-of-type(2) h1 {
+  margin: auto;
+}
+header a:nth-of-type(3) {
+  text-decoration: none;
+  color: black;
+}
+
+header a:nth-of-type(2):hover, header a:nth-of-type(3):hover {
+  background-color: #e1c8dc;
+}
+
+main {
+  margin-bottom: 6rem;
+}
+main article {
+  font-family: "main";
+  text-decoration: none;
+}
+main article p {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+main article p span {
+  background: linear-gradient(to top, black 0px, black 1px, transparent 2px) no-repeat;
+  background-size: 0 100%;
+  transition: background-size 0.5s ease;
+}
+main article p:hover > span {
+  background-size: 100% 100%;
+}
+main article img {
+  width: 35%;
+  margin: 1rem;
+  border-radius: 2rem;
+}
+main article img:hover {
+  opacity: 0.8;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+}
+
+.col-color {
+  background-color: #f3e9f1;
+}
+
+div article {
+  padding: 1rem;
+}
+
+.confirmation {
+  background-color: #f3e9f1;
+  width: fit-content;
+  padding: 1rem;
+}
+.confirmation h1 {
+  font-size: 2rem;
+}
+.confirmation p {
+  font-size: 1rem;
+}
+
+footer {
+  background-color: #f3e9f1;
+  font-family: "main";
+  height: fit-content;
+  line-height: 3rem;
+  width: 100%;
+}
+
+/*# sourceMappingURL=style.css.map */
