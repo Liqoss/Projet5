@@ -1,28 +1,8 @@
-// Récupération de l'id de la caméra sélectionnée
-var UrlParams = window.location.search;
-var idCamera = UrlParams.substr(4);
+// Récupération de l'id de la caméra
+let idSearch = window.location.search;
+let idCamera = idSearch.substr(4);
 
-let newCamera = document.getElementById("cameraChosen")
-newCamera.classList.add("card-body");
-let cameraH3 = document.createElement("h3");
-let labelLens = document.createElement("label");
-let choiceLens = document.createElement("select");
-cameraH3.classList.add("card-title");
-let divImg = document.createElement("div");
-divImg.classList.add("text-center", "col-lg-6");
-let divDescription = document.createElement("div");
-divDescription.classList.add("col-lg-6");
-let cameraPrice = document.createElement("h4");
-let cameraDescription = document.createElement("p");
-let divLens = document.createElement("div");
-divLens.classList.add("col-lg-4");
-let addCamera = document.createElement("input");
-let myImg = new Image();
-myImg.addEventListener('load', function () { })
-addCamera.classList.add("btn", "btn-primary");
-let addCart = document.createElement("a");
-
-// Affichage de la caméra en fonction de son id
+// Affichage de l'image de la caméra
 function promiseGet() {
     return new Promise((resolve, reject) => {
         let request = new XMLHttpRequest();
@@ -46,93 +26,115 @@ function promiseGet() {
 
 promiseGet()
     .then(function (response) {
-        myImg.src = response["imageUrl"];
-        newCamera.appendChild(divImg).appendChild(myImg);
-        newCamera.appendChild(cameraH3).innerHTML = response["name"];
-        newCamera.appendChild(cameraPrice).innerHTML = "Prix : " + response["price"] / 100 + " euros";
-        newCamera.appendChild(cameraDescription).innerHTML = "Description :" + response["description"];
-        labelLens.innerHTML = "Lentille souhaitée :";
+        let imageCamera = document.getElementById("imageCamera");
+        let nameCamera = document.getElementById("nameCamera");
+        let priceCamera = document.getElementById("priceCamera");
+        let description = document.getElementById("description");
+        imageCamera.src = response["imageUrl"];
+        nameCamera.innerHTML = response["name"];
+        priceCamera.innerHTML+= response["price"] / 100 + " euros";
+        description.innerHTML+= response["description"];
+    });
 
+// Choix du nombre de caméra
+for (a = 1; a < 5; a++) {
+    let selectQuantity = document.getElementById("quantityCamera")
+    let option = document.createElement("option");
+    option.text = [a];
+    option.setAttribute("value", option.text);
+    selectQuantity.add(option);
+    selectQuantity.addEventListener("click", function (event){
+        sessionStorage.removeItem("quantity")
+        let quantityStorage = selectQuantity.value;
+        sessionStorage.setItem("quantity", JSON.stringify(quantityStorage));
+        console.log(quantityStorage);
     })
+};
 
-// Choix du nombre de produit
+// Choix de la lentille
 promiseGet()
-    .then(function () {
-
-        let labelNumberOfCamera = document.createElement("label");
-        labelNumberOfCamera.classList.add("col-lg");
-        labelNumberOfCamera.innerHTML = "Quantité : ";
-        let number = document.createElement("select");
-        var xNumber = newCamera.appendChild(labelNumberOfCamera).appendChild(number);
-        var optionNumber = document.createElement("option");
-
-        for (d = 1; d <= 5; d++) {
-            var optionNumber = document.createElement("option");
-            optionNumber.text = d
-            xNumber.add(optionNumber);
-            sessionStorage.setItem("amount", "1")
-            number.addEventListener("click", function (event) {
-                sessionStorage.removeItem("amount")
-                let numberStorage = xNumber.value
-                sessionStorage.setItem("amount", numberStorage);
-                console.log(numberStorage)
-            });
-
+.then(function (response) {
+    for (d = -1; d < response["lenses"].length; d++) {
+        if (d < 0) {
+            let selectLens = document.getElementById("lensCamera")
+            let option = document.createElement("option");
+            option.text = "choisir";
+            selectLens.add(option);
         }
-    })
+        else {
+            let selectLens = document.getElementById("lensCamera")
+            let option = document.createElement("option");
+            option.text = response["lenses"][d];
+            option.setAttribute("value", option.text);
+            selectLens.add(option);
+            selectLens.addEventListener("click", function (event) {
+                sessionStorage.removeItem("lenses")
+                if (selectLens.value != "choisir") {
+                    let lensStorage = selectLens.value;
+                    sessionStorage.setItem("lenses", JSON.stringify(lensStorage));
+                    console.log(lensStorage);
+                }
+            })
+        };
+    };
+});
 
-    // choix de la lentille
-    promiseGet()
-    .then(function (response) {
-        for (d = -1; d < response["lenses"].length; d++) {
-            if (d < 0) {
-                let x = newCamera.appendChild(labelLens).appendChild(choiceLens)
-                let option = document.createElement("option");
-                option.text = "choisir";
-                x.add(option);
-            }
-            else {
-                let x = newCamera.appendChild(labelLens).appendChild(choiceLens)
-                let option = document.createElement("option");
-                option.text = response["lenses"][d];
-                option.setAttribute("value", option.text);
-                x.add(option);
-
-                choiceLens.addEventListener("click", function (event) {
-                    sessionStorage.removeItem("lenses")
-                    if (x.value != "choisir") {
-                    
-                        let lensStorage = x.value;
-                        sessionStorage.setItem("lenses", lensStorage);
-                        console.log(lensStorage)
-                    }
-                })
-            }
+// Ajout au panier 
+class Cart {
+    constructor() {
+        this.items = [];
+        if (localStorage.getItem("cart")) {
+        this.items = JSON.parse(localStorage.getItem("cart"));
         }
-    })
+    }
+    
+    save() {
+        localStorage.setItem("cart", JSON.stringify(this.items));
+    }
+    
+    add(product, lenses, quantity) {
+        let item = this.items.find(item => item.product == product && item.lenses == lenses);
+        
+        if (typeof item == "undefined") {
+        this.items.push(new CartItem(product, lenses, quantity));
+        } else {
+        item.quantity += quantity;
+        } 
+        this.save();
+    }
+    
+    delete(product, lenses) {
+        this.items = this.items.filter(item => item.product != product && item.lenses != lenses);
+        this.save();
+    }
+    
+    clear() {
+        this.items = [];
+        this.save();
+    }
+}
+    
+    class CartItem {
+        constructor(product, lenses, quantity) {
+            this.product = product;
+            this.lenses = lenses;
+            this.quantity = quantity;
+        }
+    
+    increaseQuantity() {
+        this.quantity++;
+    }
+    
+    decreaseQuantity() {
+        this.quantity--;
+    }
+}
 
-    // Ajout du produit au panier
-    promiseGet()
-    .then(function (response) {
-        addCamera.type = "submit";
-        newCamera.appendChild(divLens).appendChild(addCamera).innerHTML = "Ajouter au panier";
-        addCamera.addEventListener("click", function (event) {
-        if (sessionStorage.getItem("lenses")){
-            let test = (JSON.stringify({
-                id: response["_id"],
-                name: response["name"],
-                price: response["price"] / 100,
-                amount: sessionStorage.getItem("amount"),
-                lenses: sessionStorage.getItem("lenses"),
-                imageUrl: response["imageUrl"]
-            }));
-                sessionStorage.setItem("newArticle", test);
-                sessionStorage.removeItem("lenses");
-                sessionStorage.removeItem("amount");
-                window.location = "panier.html";
-            }
-            else {
-                alert("Veuillez préciser la lentille que vous souhaitez associer à l'appareil !")
-            }
-        })
-    })
+let buttonCart = document.getElementById("buttonCart");
+buttonCart.addEventListener("click", function (event){
+    let addLens = JSON.parse(sessionStorage.getItem("lenses"));
+    let addQuantity = JSON.parse(sessionStorage.getItem("quantity"));
+    let addCart = new Cart().add(idCamera, addLens, addQuantity);
+    window.location = "panier.html";
+    console.log(localStorage);
+});
