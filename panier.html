@@ -33,34 +33,50 @@
 
 <main>
     <div class="row space-evenly">  
-        <article id="panier">
-            <h1 class="text-center">
+        <article id="panier" class="col-4">
+            <h1 class="text-center mb-3">
                 Récapitulatif de panier
             </h1>
+            <h2 id="cartName"></h2>
+            <h2 id="cartLens"></h2>
+            <div id="divQuantity" class="d-flex">
+                <h2 id="cartQuantity"></h2>
+                <div class="ml-3">
+                    <button id="minusButton" class="text-center lineHeight">-</button>
+                    <button id="plusButton" class="text-center lineHeight">+</button>
+                </div>
+            </div>
+            <h2 id="cartPrice"></h2>
+            <h2 id="cartTotalPrice"></h2>
+            <button id="clearCart">Vider le panier</button>
         </article>
-        <article id="form" class="col-5 col-color">
-            <h1>
+        <article id="form" class="col-4 col-color">
+            <h1 class="bottom1 text-center">
                 Information de livraison
             </h1>
             <form>
-                <div>
+                <div class="columnDirection">
                     <label>Nom</label>
-                    <input type="text">
+                    <input type="text" id="cartName" required>
                 </div>
-                <div>
+                <div class="columnDirection">
                     <label>Prénom</label>
-                    <input type="text">
+                    <input type="text" id="cartFirstName" required>
                 </div>
-                <div>
+                <div class="columnDirection">
                     <label>Adresse email</label>
-                    <input type="email">
+                    <input type="email" id="cartEmail" required>
                 </div>
-                <div>
+                <div class="columnDirection">
                     <label>Adresse de livraison</label>
-                    <input type="text">
+                    <input type="text" id="cartAdress" required>
                 </div>
-                <div>
-                    <button type="submit">
+                <div class="columnDirection">
+                    <label>Ville</label>
+                    <input type="text" id="cartCity" required>
+                </div>
+                <div class="top1 text-center">
+                    <button type="submit" id="cartSubmit">
                         Valider le panier
                     </button>
                 </div>

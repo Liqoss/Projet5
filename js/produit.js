@@ -44,7 +44,6 @@ for (a = 1; a < 5; a++) {
     option.setAttribute("value", option.text);
     selectQuantity.add(option);
     selectQuantity.addEventListener("click", function (event){
-        sessionStorage.removeItem("quantity")
         let quantityStorage = selectQuantity.value;
         sessionStorage.setItem("quantity", JSON.stringify(quantityStorage));
         console.log(quantityStorage);
@@ -68,7 +67,6 @@ promiseGet()
             option.setAttribute("value", option.text);
             selectLens.add(option);
             selectLens.addEventListener("click", function (event) {
-                sessionStorage.removeItem("lenses")
                 if (selectLens.value != "choisir") {
                     let lensStorage = selectLens.value;
                     sessionStorage.setItem("lenses", JSON.stringify(lensStorage));
@@ -84,7 +82,7 @@ class Cart {
     constructor() {
         this.items = [];
         if (localStorage.getItem("cart")) {
-        this.items = JSON.parse(localStorage.getItem("cart"));
+        this.items = JSON.parse(localStorage.getItem("cart")).map(item => new CartItem(item.product, item.lenses, item.quantity));
         }
     }
     
@@ -134,7 +132,7 @@ let buttonCart = document.getElementById("buttonCart");
 buttonCart.addEventListener("click", function (event){
     let addLens = JSON.parse(sessionStorage.getItem("lenses"));
     let addQuantity = JSON.parse(sessionStorage.getItem("quantity"));
-    let addCart = new Cart().add(idCamera, addLens, addQuantity);
+    new Cart().add(idCamera, addLens, addQuantity);
     window.location = "panier.html";
     console.log(localStorage);
 });

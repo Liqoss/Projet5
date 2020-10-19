@@ -28,7 +28,7 @@ promiseGet()
             myImg.src = response[i]["imageUrl"];
             myImg.classList.add("w-100")
             const divRow = document.createElement("div");
-            divRow.classList.add("row", "my-lg-4");
+            divRow.classList.add("row", "my-lg-4", "y-center");
             const divImage = document.createElement("div");
             divImage.classList.add("col-lg-3")
             const newDiv = document.createElement("div");

@@ -91,8 +91,31 @@ main{
     }
 }
 
+.bottom1{
+    margin-bottom: 1rem;
+}
+
+.top1{
+    margin-top: 1rem;
+}
+
+.columnDirection{
+    display: flex;
+    flex-direction: column;
+}
+
+.y-center{
+    display: flex;
+    align-items: center;
+}
+
 .space-evenly{
     justify-content: space-evenly;
+}
+
+#panier{
+    line-height: 2rem;
+    background-color: $color-header;
 }
 
 .col-color{
@@ -103,6 +126,13 @@ div article{
     padding: 1rem;
 }
 
+.lineHeight{
+    line-height: 1rem;
+}
+
+#clearCart{
+   width: 100%;
+}
 .confirmation{
     background-color: $color-header;
     width: fit-content;
