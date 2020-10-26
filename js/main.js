@@ -32,10 +32,11 @@ promiseGet()
             const divImage = document.createElement("div");
             divImage.classList.add("col-lg-3")
             const newDiv = document.createElement("div");
-            newDiv.classList.add("col-lg-6", "my-3", "offset-1", "text-dark");
+            newDiv.classList.add("col-lg-6", "my-3", "offset-1", "text-center");
             const nameCamera = document.createElement("h2");
             const priceCamera = document.createElement("p");
             const descriptionCamera = document.createElement("p");
+            descriptionCamera.classList.add("mb-4")
             const lienProduct = document.createElement("a");
             let idLien = response[i]["_id"]
             lienProduct.href = "produit.html?id=" + idLien;

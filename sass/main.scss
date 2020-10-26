@@ -13,7 +13,6 @@ header{
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 7rem;
     font-family: "header";
 
     .logo{
@@ -61,7 +60,7 @@ header a:nth-of-type(2):hover, header a:nth-of-type(3):hover{
 }
 
 main{
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
 
     article{
         font-family: "main";
@@ -93,6 +92,7 @@ main{
 
 .bottom1{
     margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
 .top1{
@@ -128,11 +128,44 @@ div article{
 
 .lineHeight{
     line-height: 1rem;
+    cursor: pointer;
 }
 
-#clearCart{
-   width: 100%;
+th, td, #form{
+    padding: 0.5rem;
 }
+
+th{
+    font-size: 1.5rem;
+}
+
+td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.fontSize{
+    font-size: 90%;
+}
+
+@media screen and (max-width: 448px) {
+    .positionButton {
+        position: relative;
+        right: 1.5rem;
+        padding: 0.35rem;
+    }
+  }
+
+@media screen and (min-width: 449px) {
+    .positionButton a{
+        padding: 0.35rem;
+    }
+}
+
+.underline{
+    text-decoration: underline;
+}
+
 .confirmation{
     background-color: $color-header;
     width: fit-content;

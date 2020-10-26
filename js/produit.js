@@ -96,7 +96,7 @@ class Cart {
         if (typeof item == "undefined") {
         this.items.push(new CartItem(product, lenses, quantity));
         } else {
-        item.quantity += quantity;
+        item.quantity = parseInt(item.quantity) + parseInt(quantity);
         } 
         this.save();
     }

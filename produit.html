@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/48432da99e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/48432da99e.js" crossorigin="anonymous"></script>
     <title>Oritechno - Produit</title>
 </head>
 
 <body>
 
-<header>
+<header class="flex-column flex-sm-row align-items-center">
     <a href="/index.html" class="logo">
         <i class="fas fa-shopping-cart fa-4x align-self-center"></i>
         <h1 class="align-self-center">
             Oritechno
         </h1>
     </a>
-    <a href="/index.html">
+    <a href="/index.html" class="my-3 h-100">
         <h1 class="align-self-center">Accueil</h1>
     </a>
-    <a href="/panier.html">
+    <a href="/panier.html" class="h-100">
         <i class="fas fa-shopping-basket fa-2x align-self-center"></i>
         <h1 class="align-self-center">Mon Panier</h1>
     </a>
 </header>
 
 <main>
-    <article>
-        <img id="imageCamera" class="text-center">
+    <article class="d-flex flex-column justify-content-center">
+        <img id="imageCamera" class="align-self-center">
         <h1 id="nameCamera" class="text-center"></h1>
         <h2 id="priceCamera" class="text-center">Prix : </h2>
         <p id="description" class="text-center">Description : </p>
         <br>
-        <label>Quantité
+        <label class="mb-3 align-self-center">Quantité
             <select id="quantityCamera">
             </select>
         </label>
-        <label>Lentille souhaitée
+        <label class="mb-3 align-self-center">Lentille souhaitée
             <select id="lensCamera">
             </select>
         </label>
-        <button id="buttonCart">Ajouter au panier</button>
+        <button id="buttonCart" class="w-30 align-self-center">Ajouter au panier</button>
     </article>
 </main>
 

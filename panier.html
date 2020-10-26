@@ -10,80 +10,85 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <title>Oritechno - Produit</title>
+    <title>Oritechno - Panier</title>
 </head>
 
 <body>
 
-<header>
-    <a href="/index.html" class="logo">
+<header class="flex-column flex-sm-row align-items-center">
+    <a href="/index.html" class="logo d-flex">
         <i class="fas fa-shopping-cart fa-4x align-self-center"></i>
         <h1 class="align-self-center">
             Oritechno
         </h1>
     </a>
-    <a href="/index.html">
+    <a href="/index.html" class="my-3 h-100">
         <h1 class="align-self-center">Accueil</h1>
     </a>
-    <a href="/panier.html">
+    <a href="/panier.html" class="h-100">
         <i class="fas fa-shopping-basket fa-2x align-self-center"></i>
         <h1 class="align-self-center">Mon Panier</h1>
     </a>
 </header>
 
-<main>
-    <div class="row space-evenly">  
-        <article id="panier" class="col-4">
-            <h1 class="text-center mb-3">
-                Récapitulatif de panier
-            </h1>
-            <h2 id="cartName"></h2>
-            <h2 id="cartLens"></h2>
-            <div id="divQuantity" class="d-flex">
-                <h2 id="cartQuantity"></h2>
-                <div class="ml-3">
-                    <button id="minusButton" class="text-center lineHeight">-</button>
-                    <button id="plusButton" class="text-center lineHeight">+</button>
-                </div>
+<main class="d-flex flex-column align-items-center">
+    <article id="panier" class="col-12 col-sm-10 col-md-8 col-lg-6 my-4 d-flex flex-column">
+        <table id="tableCart">
+            <thead>
+                <tr>
+                    <th colspan="5" class="text-center">
+                        Récapitulatif de panier
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="cart">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" id="totalPrice" class="text-center">
+                        Prix total de la commande : 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="lineHeight text-center">
+                        <button id="clearCart">Vider le panier</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </article>
+    <article id="form" class="col-12 col-sm-10 col-md-8 col-lg-6 col-color">
+        <h1 class="bottom1 text-center">
+            Information de livraison
+        </h1>
+        <form>
+            <div class="columnDirection">
+                <label>Nom</label>
+                <input type="text" id="cartLastName" required>
             </div>
-            <h2 id="cartPrice"></h2>
-            <h2 id="cartTotalPrice"></h2>
-            <button id="clearCart">Vider le panier</button>
-        </article>
-        <article id="form" class="col-4 col-color">
-            <h1 class="bottom1 text-center">
-                Information de livraison
-            </h1>
-            <form>
-                <div class="columnDirection">
-                    <label>Nom</label>
-                    <input type="text" id="cartName" required>
-                </div>
-                <div class="columnDirection">
-                    <label>Prénom</label>
-                    <input type="text" id="cartFirstName" required>
-                </div>
-                <div class="columnDirection">
-                    <label>Adresse email</label>
-                    <input type="email" id="cartEmail" required>
-                </div>
-                <div class="columnDirection">
-                    <label>Adresse de livraison</label>
-                    <input type="text" id="cartAdress" required>
-                </div>
-                <div class="columnDirection">
-                    <label>Ville</label>
-                    <input type="text" id="cartCity" required>
-                </div>
-                <div class="top1 text-center">
-                    <button type="submit" id="cartSubmit">
-                        Valider le panier
-                    </button>
-                </div>
-            </form>
-        </article>
-    </div>
-    
+            <div class="columnDirection">
+                <label>Prénom</label>
+                <input type="text" id="cartFirstName" required>
+            </div>
+            <div class="columnDirection">
+                <label>Adresse email</label>
+                <input type="email" id="cartEmail" required>
+            </div>
+            <div class="columnDirection">
+                <label>Adresse de livraison</label>
+                <input type="text" id="cartAdress" required>
+            </div>
+            <div class="columnDirection">
+                <label>Ville</label>
+                <input type="text" id="cartCity" required>
+            </div>
+            <div class="top1 text-center">
+                <button type="submit" id="cartSubmit">
+                    Valider le panier
+                </button>
+            </div>
+        </form>
+    </article>
 </main>
 
 <footer>
