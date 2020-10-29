@@ -39,14 +39,6 @@ class Cart {
             this.lenses = lenses;
             this.quantity = quantity;
         }
-    
-    increaseQuantity() {
-        this.quantity++;
-    }
-    
-    decreaseQuantity() {
-        this.quantity--;
-    }
 }
 
 function promiseGet(idProduct) {
@@ -105,8 +97,10 @@ if(localStorage.length != 0){
             let cartButton = document.createElement("td");
             let plusButton = document.createElement("a");
             let minusButton= document.createElement("a");
+            let sum = 0;
             
             cartTr.classList.add("fontSize");
+            cartPrice.classList.add("txt");
             cartButton.classList.add("positionButton")
             plusButton.classList.add("lineHeight", "text-decoration-none");
             minusButton.classList.add("lineHeight", "text-decoration-none");
@@ -120,6 +114,8 @@ if(localStorage.length != 0){
                 element.quantity--;
                 cartQuantity.innerHTML = element.quantity;
                 cartPrice.innerHTML = response["price"] * element.quantity / 100 + " euros";
+                sum -= response["price"];
+                totalPrice.innerHTML = "Total de votre commande : " + sum / 100 + " euros";
             });
             
             cartTable.appendChild(cartTr).appendChild(cartButton).appendChild(plusButton).innerHTML = "+";
@@ -127,8 +123,14 @@ if(localStorage.length != 0){
                 element.quantity++;
                 cartQuantity.innerHTML = element.quantity;
                 cartPrice.innerHTML = response["price"] * element.quantity / 100 + " euros";
+                sum += response["price"];
+                totalPrice.innerHTML = "Total de votre commande : " + sum / 100 + " euros";
             });
             cartTable.appendChild(cartTr).appendChild(cartPrice).innerHTML = response["price"] * element.quantity / 100 + " euros";
+
+            sum += response["price"] * element.quantity;
+            totalPrice.innerHTML = "Prix total de votre commande : " + sum / 100 + " euros";
+            
             
             clearCart.addEventListener("click", function(event){
                 if (confirm("Voulez-vous vraiment effacer l'intégralité du panier ?")) {
@@ -145,7 +147,6 @@ if(localStorage.length != 0){
     cartEmpty.classList.add("text-center");
     cartIf.appendChild(cartEmpty).innerHTML = "Votre panier est vide.";
     clearCart.classList.add("invisible");
-    totalPrice.classList.add("invisible");
 };
 
 // Gestion du formulaire
@@ -168,12 +169,9 @@ cartSubmit.addEventListener("click", function(event){
         email: cartEmail.value,
     };
 
-    cart.items.forEach(element => {
-    promiseGet(element.product)
-    .then(function (response){
     let products = [];
     for (i = 0; i < cart.items.length; i++){
-        products.push((element.product));
+        products.push((cart.items[i].product));
     }
     
     let object = {
@@ -186,20 +184,9 @@ cartSubmit.addEventListener("click", function(event){
         if (this.readyState == XMLHttpRequest.DONE) {
             localStorage.setItem("order", this.responseText)
             window.location = "confirmation.html";
+        }else{
+            console.log("Requête échouée !")
         }
     }
     request.send(order);
-    });
-    })
 });
-
-function calculateSum() {
-    var sum = 0;
-    //iterate through each textboxes and add the values
-    $(".txt").each(function () {
-        //add only if the value is number
-        if (!isNaN(this.value) && this.value.length != 0) {
-            sum += parseFloat(this.value);
-        }
-    });
-}
