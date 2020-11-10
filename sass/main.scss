@@ -66,9 +66,13 @@ main{
         font-family: "main";
         text-decoration: none;
 
-        p{
-            margin-top: 2rem;
+        a h2{
             font-size: 1.5rem;
+        }
+
+        p{
+            margin-top: 1.5rem;
+            font-size: 1.25rem;
             
             span{
                 background: linear-gradient(to top, black 0px , black 1px, transparent 2px) no-repeat;
@@ -79,12 +83,13 @@ main{
                 background-size: 100% 100%;
             }  
         }
-        img{
+        .img{
             width: 35%;
             margin: 1rem;
             border-radius: 2rem;
             &:hover{
                 opacity: 0.8;
+                cursor: pointer;
             }
         }
     }

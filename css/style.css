@@ -70,9 +70,12 @@ main article {
   font-family: "main";
   text-decoration: none;
 }
-main article p {
-  margin-top: 2rem;
+main article a h2 {
   font-size: 1.5rem;
+}
+main article p {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
 }
 main article p span {
   background: linear-gradient(to top, black 0px, black 1px, transparent 2px) no-repeat;
@@ -82,13 +85,14 @@ main article p span {
 main article p:hover > span {
   background-size: 100% 100%;
 }
-main article img {
+main article .img {
   width: 35%;
   margin: 1rem;
   border-radius: 2rem;
 }
-main article img:hover {
+main article .img:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .bottom1 {
