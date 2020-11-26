@@ -43,7 +43,7 @@ promiseGet()
 
 // Choix du nombre de caméra
 function chooseNumber() {
-    for (a = 1; a < 5; a++) {
+    for (a = 1; a < 6; a++) {
         let selectQuantity = document.getElementById("quantityCamera")
         let option = document.createElement("option");
         option.text = [a];
@@ -91,43 +91,12 @@ chooseLens();
 
 // Ajout au panier
 function addToCart(){
-    class Cart {
-        constructor() {
-            this.items = [];
-            if (localStorage.getItem("cart")) {
-            this.items = JSON.parse(localStorage.getItem("cart")).map(item => new CartItem(item.product, item.lenses, item.quantity));
-            }
-        }
-        
-        save() {
-            localStorage.setItem("cart", JSON.stringify(this.items));
-        }
-        
-        add(product, lenses, quantity) {
-            let item = this.items.find(item => item.product == product && item.lenses == lenses);
-            
-            if (typeof item == "undefined") {
-            this.items.push(new CartItem(product, lenses, quantity));
-            } else {
-            item.quantity = parseInt(item.quantity) + parseInt(quantity);
-            } 
-            this.save();
-        }
-    }
-        class CartItem {
-            constructor(product, lenses, quantity) {
-                this.product = product;
-                this.lenses = lenses;
-                this.quantity = quantity;
-            }
-    }
-    
-    let buttonCart = document.getElementById("buttonCart");
-    buttonCart.addEventListener("click", function (event){
-        let addLens = JSON.parse(sessionStorage.getItem("lenses"));
-        let addQuantity = JSON.parse(sessionStorage.getItem("quantity"));
-        new Cart().add(getId(), addLens, addQuantity);
-        window.location = "panier.html";
-    });
+let buttonCart = document.getElementById("buttonCart");
+buttonCart.addEventListener("click", function (event){
+    let addLens = JSON.parse(sessionStorage.getItem("lenses"));
+    let addQuantity = JSON.parse(sessionStorage.getItem("quantity"));
+    new Cart().add(getId(), addLens, addQuantity);
+    window.location = "panier.html";
+});
 }
 addToCart();
