@@ -96,12 +96,13 @@ function displayCart() {
                 sum += response["price"] * element.quantity;
                 totalPrice.innerHTML = "Prix total de votre commande : " + sum / 100 + " euros";
                 
-                
                 clearCart.addEventListener("click", function(event){
-                    if (confirm("Voulez-vous vraiment effacer l'intégralité du panier ?")) {
+                    let clearChoice = confirm("Voulez-vous vraiment effacer l'intégralité du panier ?")
+                    if (clearChoice == true){
                         localStorage.clear();
-                        window.location = "panier.html"
-                    } else {
+                        window.location = "panier.html"    
+                    }    
+                    else {
                     }
                 })
             });

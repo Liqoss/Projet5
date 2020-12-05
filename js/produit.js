@@ -29,16 +29,16 @@ function promiseGet() {
 };
 
 promiseGet()
-    .then(function (response) {
+    .then(function showCamera(camera) {
         let imageCamera = document.getElementById("imageCamera");
         let nameCamera = document.getElementById("nameCamera");
         let priceCamera = document.getElementById("priceCamera");
         let description = document.getElementById("description");
-        imageCamera.src = response["imageUrl"];
-        imageCamera.classList.add("w-25", "mb-3");
-        nameCamera.innerHTML = response["name"];
-        priceCamera.innerHTML+= response["price"] / 100 + " euros";
-        description.innerHTML+= response["description"];
+        imageCamera.src = camera["imageUrl"];
+        imageCamera.classList.add("w-25", "mb-3", "rounded-lg");
+        nameCamera.innerHTML = camera["name"];
+        priceCamera.innerHTML+= camera["price"] / 100 + " euros";
+        description.innerHTML+= camera["description"];
     });
 
 // Choix du nombre de caméra
